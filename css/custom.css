@@ -1,36 +1,126 @@
-/* Site-wide typography + color theme overrides */
 :root {
-  --site-font: "Poppins", sans-serif;
-  --site-primary: #0f766e;
-  --site-accent: #14b8a6;
-  --site-text-dark: #0f172a;
+  --theme-bg: #0b1020;
+  --theme-surface: #111a35;
+  --theme-text: #e2e8f0;
+  --theme-muted: #a5b4cc;
+  --theme-primary: #22d3ee;
+  --theme-primary-strong: #06b6d4;
+  --theme-secondary: #a78bfa;
+  --theme-border: rgba(148, 163, 184, 0.35);
 }
 
 .slides,
-.slides *:not(.material-icons) {
-  font-family: var(--site-font);
+.slides body,
+body.slides {
+  font-family: "Montserrat", "Segoe UI", sans-serif !important;
+  background: var(--theme-bg);
+  color: var(--theme-text);
 }
 
-.slides a:not(.button) {
-  color: var(--site-accent);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: "Lora", "Times New Roman", serif !important;
+  color: #f8fafc;
 }
 
-.button {
-  background: var(--site-primary);
+p,
+li,
+span,
+.small,
+.opacity-8,
+.opacity-6 {
+  color: var(--theme-muted);
 }
 
-.button:hover:not(.stroke):not(.thin-stroke) {
-  background: var(--site-accent);
+a,
+.slide a,
+.popup a {
+  color: var(--theme-primary);
+}
+
+a:hover,
+.slide a:hover,
+.popup a:hover {
+  color: var(--theme-secondary);
+}
+
+.slide .background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(11, 16, 32, 0.68), rgba(17, 26, 53, 0.4));
+  pointer-events: none;
+}
+
+.popup {
+  background: rgba(8, 12, 26, 0.94);
+}
+
+.popup .content,
+.popup .wrap,
+.slide .container,
+.slide .wrap {
+  color: var(--theme-text);
+}
+
+.button,
+.slide .button,
+.popup .button {
+  font-family: "Montserrat", "Segoe UI", sans-serif !important;
+}
+
+.button:not(.stroke),
+.slide .button:not(.stroke),
+.popup .button:not(.stroke) {
+  background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary));
+  color: #04101f;
 }
 
 .button.stroke,
-.button.thin-stroke,
-.slide.whiteSlide .button.stroke,
-.slide.whiteSlide .button.thin-stroke {
-  color: var(--site-primary);
+.slide .button.stroke,
+.popup .button.stroke {
+  border-color: var(--theme-primary);
+  color: var(--theme-primary);
 }
 
-.slides.whiteSlide,
-.slides .whiteSlide {
-  color: var(--site-text-dark);
+.button.stroke:hover,
+.slide .button.stroke:hover,
+.popup .button.stroke:hover {
+  border-color: var(--theme-secondary);
+  color: var(--theme-secondary);
+}
+
+input,
+textarea,
+select,
+.slides-form input,
+.slides-form textarea,
+.slides-form select {
+  border-color: var(--theme-border);
+  color: var(--theme-text);
+  background: rgba(15, 23, 42, 0.88);
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.slides-form input:focus,
+.slides-form textarea:focus,
+.slides-form select:focus {
+  border-color: var(--theme-primary);
+}
+
+svg,
+svg * {
+  fill: currentColor;
 }
