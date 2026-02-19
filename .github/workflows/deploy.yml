@@ -8,6 +8,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
       - name: Copy site to EC2 (/var/www/html)
         uses: appleboy/scp-action@v1
         with:
