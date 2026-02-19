@@ -2,25 +2,16 @@ name: Deploy static site to EC2
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Fix permissions on /var/www/html (allow deploy user write)
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ${{ secrets.EC2_USER }}
-        key: ${{ secrets.EC2_SSH_KEY }}
-        script: |
-          sudo mkdir -p /var/www/html
-          sudo chown -R ubuntu:www-data /var/www/html
-          sudo chmod -R 775 /var/www/html
-
+      # Copy repo contents to EC2 web root
       - name: Copy site to EC2 (/var/www/html)
         uses: appleboy/scp-action@v1
         with:
@@ -29,8 +20,10 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "./*"
           target: "/var/www/html"
+          strip_components: 0
 
-      - name: Set final ownership + reload nginx
+      # Optional: fix permissions + reload nginx (safe even for static)
+      - name: Reload nginx
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
