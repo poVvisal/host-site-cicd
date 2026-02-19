@@ -1,0 +1,36 @@
+/* Site-wide typography + color theme overrides */
+:root {
+  --site-font: "Poppins", sans-serif;
+  --site-primary: #0f766e;
+  --site-accent: #14b8a6;
+  --site-text-dark: #0f172a;
+}
+
+.slides,
+.slides *:not(.material-icons) {
+  font-family: var(--site-font);
+}
+
+.slides a:not(.button) {
+  color: var(--site-accent);
+}
+
+.button {
+  background: var(--site-primary);
+}
+
+.button:hover:not(.stroke):not(.thin-stroke) {
+  background: var(--site-accent);
+}
+
+.button.stroke,
+.button.thin-stroke,
+.slide.whiteSlide .button.stroke,
+.slide.whiteSlide .button.thin-stroke {
+  color: var(--site-primary);
+}
+
+.slides.whiteSlide,
+.slides .whiteSlide {
+  color: var(--site-text-dark);
+}
